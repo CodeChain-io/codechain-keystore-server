@@ -1,7 +1,7 @@
-Codechain keystore server
+CodeChain keystore server
 ==========================
 
-Codechain keystore server is a private key management server. It saves CodeChain's asset transfer address safely in a disk. You should use this keystore server to save your private key safely in CodeChain-SDK.
+CodeChain keystore server is a private key management server. It saves CodeChain's asset transfer address safely in a disk. You should use this keystore server to save your private key safely in CodeChain SDK.
 
 Install
 --------
