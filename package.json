@@ -1,0 +1,35 @@
+{
+  "name": "codechain-keystore-server",
+  "version": "0.0.0",
+  "author": "CodeChain Team <codechain@kodebox.io>",
+  "license": "Apache-2.0",
+  "scripts": {
+    "start": "ts-node ./bin/www.ts"
+  },
+  "dependencies": {
+    "codechain-keystore": "git://github.com/CodeChain-io/codechain-keystore.git#b3c176daab1aed64a7f04677744997a9b3d5681c",
+    "config": "^2.0.1",
+    "debug": "~2.6.9",
+    "express": "~4.16.0",
+    "http-errors": "~1.6.2",
+    "morgan": "~1.9.0",
+    "morgan-body": "^2.4.5",
+    "pm2": "^3.0.3",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2",
+    "ts-node": "^7.0.0",
+    "typescript": "^3.0.1"
+  },
+  "devDependencies": {
+    "@types/debug": "^0.0.30",
+    "@types/express": "^4.16.0",
+    "@types/http-errors": "^1.6.1",
+    "@types/lodash": "^4.14.116",
+    "@types/morgan": "^1.7.35",
+    "@types/node-sass-middleware": "^0.0.30",
+    "@types/request-promise": "^4.1.42",
+    "tsc": "^1.20150623.0",
+    "tslint": "^5.11.0",
+    "tslint-config-prettier": "^1.14.0"
+  }
+}
