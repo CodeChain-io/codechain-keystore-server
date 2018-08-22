@@ -4,6 +4,7 @@
   "author": "CodeChain Team <codechain@kodebox.io>",
   "license": "Apache-2.0",
   "scripts": {
+    "lint": "tsfmt --verify",
     "start": "ts-node ./bin/www.ts"
   },
   "dependencies": {
