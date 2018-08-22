@@ -7,7 +7,7 @@
     "start": "ts-node ./bin/www.ts"
   },
   "dependencies": {
-    "codechain-keystore": "git://github.com/CodeChain-io/codechain-keystore.git#b3c176daab1aed64a7f04677744997a9b3d5681c",
+    "codechain-keystore": "git://github.com/CodeChain-io/codechain-keystore.git#8ee7f8a58409d251a236aae3404e84462364aceb",
     "config": "^2.0.1",
     "debug": "~2.6.9",
     "express": "~4.16.0",

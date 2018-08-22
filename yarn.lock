@@ -534,9 +534,9 @@ code-point-at@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/code-point-at/-/code-point-at-1.1.0.tgz#0d070b4d043a5bea33a2f1a40e2edb3d9a4ccf77"
 
-"codechain-keystore@git://github.com/CodeChain-io/codechain-keystore.git#b3c176daab1aed64a7f04677744997a9b3d5681c":
+"codechain-keystore@git://github.com/CodeChain-io/codechain-keystore.git#8ee7f8a58409d251a236aae3404e84462364aceb":
   version "0.0.0"
-  resolved "git://github.com/CodeChain-io/codechain-keystore.git#b3c176daab1aed64a7f04677744997a9b3d5681c"
+  resolved "git://github.com/CodeChain-io/codechain-keystore.git#8ee7f8a58409d251a236aae3404e84462364aceb"
   dependencies:
     codechain-sdk "^0.1.0-alpha.18"
     config "^2.0.1"

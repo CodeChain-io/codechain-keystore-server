@@ -1,11 +1,14 @@
 import * as express from "express";
 import { Context } from "../context";
 
+type KeyType = "asset" | "platform";
+
 export function createRouter(context: Context) {
     const router = express.Router();
 
     router.get("/keys", async (req, res) => {
-        const keys = await context.cckey.getKeys();
+        const keyType: KeyType = req.body.keyType;
+        const keys = await context.cckey[keyType].getKeys();
 
         res.json({
             success: true,
@@ -15,7 +18,8 @@ export function createRouter(context: Context) {
 
     router.post("/keys", async (req, res) => {
         const { passphrase } = req.body;
-        const publicKey = await context.cckey.createKey({ passphrase });
+        const keyType: KeyType = req.body.keyType;
+        const publicKey = await context.cckey[keyType].createKey({ passphrase });
         res.json({
             success: true,
             result: publicKey
@@ -25,7 +29,8 @@ export function createRouter(context: Context) {
     router.post("/keys/:key/remove", async (req, res) => {
         const { key } = req.params;
         const { passphrase = "" } = req.body;
-        const result = await context.cckey.deleteKey({ publicKey: key, passphrase });
+        const keyType: KeyType = req.body.keyType;
+        const result = await context.cckey[keyType].deleteKey({ publicKey: key, passphrase });
         res.json({
             success: true,
             result
@@ -36,7 +41,8 @@ export function createRouter(context: Context) {
         try {
             const { key } = req.params;
             const { message, passphrase = "" } = req.body;
-            const result = await context.cckey.signKey({ publicKey: key, passphrase, message });
+            const keyType: KeyType = req.body.keyType;
+            const result = await context.cckey[keyType].sign({ publicKey: key, passphrase, message });
             res.json({
                 success: true,
                 result
@@ -51,7 +57,7 @@ export function createRouter(context: Context) {
 
     router.post("/pkhs", async (req, res) => {
         const { publicKey } = req.body;
-        const hash = await context.cckey.insertPKH({ publicKey });
+        const hash = await context.cckey.pkh.insertPKH({ publicKey });
         res.json({
             success: true,
             result: hash
@@ -60,7 +66,7 @@ export function createRouter(context: Context) {
 
     router.get("/pkhs/:hash", async (req, res) => {
         const { hash } = req.params;
-        const publicKey = await context.cckey.getPKH({ hash });
+        const publicKey = await context.cckey.pkh.getPKH({ hash });
         res.json({
             success: true,
             result: publicKey
