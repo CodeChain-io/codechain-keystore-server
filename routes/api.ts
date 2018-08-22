@@ -55,21 +55,21 @@ export function createRouter(context: Context) {
         }
     });
 
-    router.post("/pkhs", async (req, res) => {
-        const { publicKey } = req.body;
-        const hash = await context.cckey.pkh.insertPKH({ publicKey });
+    router.post("/mapping", async (req, res) => {
+        const { key, value } = req.body;
+        const hash = await context.cckey.mapping.add({ key, value });
         res.json({
             success: true,
             result: hash
         });
     });
 
-    router.get("/pkhs/:hash", async (req, res) => {
-        const { hash } = req.params;
-        const publicKey = await context.cckey.pkh.getPKH({ hash });
+    router.get("/mapping/:key", async (req, res) => {
+        const { key } = req.params;
+        const value = await context.cckey.mapping.get({ key });
         res.json({
             success: true,
-            result: publicKey
+            result: value
         });
     });
 
