@@ -6,7 +6,7 @@ export function createRouter(context: Context) {
 
     router.get("/", async (req, res) => {
         try {
-            await context.cckey.getKeys();
+            await context.cckey.platform.getKeys();
             res.json({
                 success: true,
             });
