@@ -42,5 +42,3 @@ export async function createApp(): Promise<[express.Application, Context]> {
     });
     return [app, context];
 }
-
-
