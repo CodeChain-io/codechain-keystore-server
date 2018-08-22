@@ -17,6 +17,14 @@ Run
 
 Run `yarn pm2 start ecosystem.config.js`
 
+Send a ping to the server to check if it's up and running.
+
+```
+curl http://localhost:7007/ping
+```
+
+The server responds with `{"success":true}`.
+
 How your private key is saved
 -------------------
 
