@@ -1,4 +1,4 @@
-CodeChain keystore server
+CodeChain keystore server [![Build Status](https://travis-ci.org/CodeChain-io/codechain-keystore-server.svg?branch=master)](https://travis-ci.org/CodeChain-io/codechain-keystore-server)
 ==========================
 
 CodeChain keystore server is a private key management server. It saves CodeChain's asset transfer address safely in a disk. You should use this keystore server to save your private key safely in CodeChain SDK.
