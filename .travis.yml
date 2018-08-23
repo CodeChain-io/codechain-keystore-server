@@ -5,5 +5,4 @@ before_install:
   - yarn install
 script:
   - yarn test
-  - yarn build
 cache: yarn
