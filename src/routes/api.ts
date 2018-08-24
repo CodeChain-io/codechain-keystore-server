@@ -26,7 +26,7 @@ export function createRouter(context: Context) {
         });
     });
 
-    router.post("/keys/:key/remove", async (req, res) => {
+    router.delete("/keys/:key", async (req, res) => {
         const { key } = req.params;
         const keyType: KeyType = req.body.keyType;
         const result = await context.cckey[keyType].deleteKey({ publicKey: key });
