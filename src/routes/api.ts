@@ -28,9 +28,8 @@ export function createRouter(context: Context) {
 
     router.post("/keys/:key/remove", async (req, res) => {
         const { key } = req.params;
-        const { passphrase = "" } = req.body;
         const keyType: KeyType = req.body.keyType;
-        const result = await context.cckey[keyType].deleteKey({ publicKey: key, passphrase });
+        const result = await context.cckey[keyType].deleteKey({ publicKey: key });
         res.json({
             success: true,
             result
