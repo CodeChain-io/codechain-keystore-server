@@ -8,7 +8,7 @@ export function createRouter(context: Context) {
         try {
             await context.cckey.platform.getKeys();
             res.json({
-                success: true,
+                success: true
             });
         } catch (err) {
             res.json({

@@ -1,7 +1,7 @@
 import { Application } from "express";
-import { createApp } from "../app";
-import { Context, closeContext } from "../context";
 import * as request from "supertest";
+import { createApp } from "../app";
+import { closeContext, Context } from "../context";
 
 let app: Application;
 let context: Context;

@@ -10,7 +10,7 @@ export async function createContext(): Promise<Context> {
     });
     return {
         cckey
-    }
+    };
 }
 
 export function closeContext(context: Context): Promise<void> {

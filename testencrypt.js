@@ -7,7 +7,7 @@ const encrypted = myCrypto.encrypt(privateKey, "password");
 
 const decrypted = myCrypto.decrypt(encrypted, "password");
 if (privateKey !== decrypted) {
-    throw "Decryption failed";
+    throw new Error("Decryption failed");
 } else {
     console.log("Decryption success");
 }

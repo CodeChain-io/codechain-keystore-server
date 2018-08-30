@@ -1,12 +1,12 @@
-import * as createError from "http-errors";
 import * as express from "express";
-import * as path from "path";
+import * as createError from "http-errors";
 import * as logger from "morgan";
+import * as path from "path";
 const morganBody = require("morgan-body");
 
+import { Context, createContext } from "./context";
 import { createRouter as createApiRouter } from "./routes/api";
 import { createRouter as createPingRouter } from "./routes/ping";
-import { createContext, Context } from "./context";
 
 export async function createApp(): Promise<[express.Application, Context]> {
     const app = express();

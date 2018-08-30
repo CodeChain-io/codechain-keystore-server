@@ -2,9 +2,9 @@
  * Module dependencies.
  */
 
+import * as debugModule from "debug";
 import { createApp } from "../src/app";
 import { closeContext } from "../src/context";
-import * as debugModule from "debug";
 const debug = debugModule("faucet:server");
 import * as http from "http";
 
@@ -41,9 +41,12 @@ async function main() {
             try {
                 await new Promise((resolve, reject) => {
                     server.close((err: any) => {
-                        if (err) { reject(err); return; }
+                        if (err) {
+                            reject(err);
+                            return;
+                        }
                         resolve();
-                    })
+                    });
                 });
             } catch (err) {
                 console.error(`Error at closing ${err}`);
@@ -52,8 +55,7 @@ async function main() {
                 await closeContext(context);
                 process.exit();
             }
-        })
-
+        });
     } catch (err) {
         console.error(`Error at main ${err}, ${JSON.stringify(err)}`);
     }
@@ -89,9 +91,7 @@ function onError(port: any): (error: any) => void {
             throw error;
         }
 
-        const bind = typeof port === "string"
-            ? "Pipe " + port
-            : "Port " + port;
+        const bind = typeof port === "string" ? "Pipe " + port : "Port " + port;
 
         // handle specific listen errors with friendly messages
         switch (error.code) {
@@ -106,7 +106,7 @@ function onError(port: any): (error: any) => void {
             default:
                 throw error;
         }
-    }
+    };
 }
 
 /**
@@ -116,9 +116,8 @@ function onError(port: any): (error: any) => void {
 function onListening(server: any): () => void {
     return () => {
         const addr = server.address();
-        const bind = typeof addr === "string"
-            ? "pipe " + addr
-            : "port " + addr.port;
+        const bind =
+            typeof addr === "string" ? "pipe " + addr : "port " + addr.port;
         debug("Listening on " + bind);
-    }
+    };
 }

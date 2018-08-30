@@ -19,7 +19,9 @@ export function createRouter(context: Context) {
     router.post("/keys", async (req, res) => {
         const { passphrase } = req.body;
         const keyType: KeyType = req.body.keyType;
-        const publicKey = await context.cckey[keyType].createKey({ passphrase });
+        const publicKey = await context.cckey[keyType].createKey({
+            passphrase
+        });
         res.json({
             success: true,
             result: publicKey
@@ -29,7 +31,9 @@ export function createRouter(context: Context) {
     router.delete("/keys/:key", async (req, res) => {
         const { key } = req.params;
         const keyType: KeyType = req.body.keyType;
-        const result = await context.cckey[keyType].deleteKey({ publicKey: key });
+        const result = await context.cckey[keyType].deleteKey({
+            publicKey: key
+        });
         res.json({
             success: true,
             result
@@ -41,7 +45,11 @@ export function createRouter(context: Context) {
             const { key } = req.params;
             const { message, passphrase = "" } = req.body;
             const keyType: KeyType = req.body.keyType;
-            const result = await context.cckey[keyType].sign({ publicKey: key, passphrase, message });
+            const result = await context.cckey[keyType].sign({
+                publicKey: key,
+                passphrase,
+                message
+            });
             res.json({
                 success: true,
                 result
