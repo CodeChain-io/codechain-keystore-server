@@ -19,12 +19,12 @@ export function createRouter(context: Context) {
     router.post("/keys", async (req, res) => {
         const { passphrase } = req.body;
         const keyType: KeyType = req.body.keyType;
-        const publicKey = await context.cckey[keyType].createKey({
+        const key = await context.cckey[keyType].createKey({
             passphrase
         });
         res.json({
             success: true,
-            result: publicKey
+            result: key
         });
     });
 
@@ -32,7 +32,7 @@ export function createRouter(context: Context) {
         const { key } = req.params;
         const keyType: KeyType = req.body.keyType;
         const result = await context.cckey[keyType].deleteKey({
-            publicKey: key
+            key
         });
         res.json({
             success: true,
@@ -46,7 +46,7 @@ export function createRouter(context: Context) {
             const { message, passphrase = "" } = req.body;
             const keyType: KeyType = req.body.keyType;
             const result = await context.cckey[keyType].sign({
-                publicKey: key,
+                key,
                 passphrase,
                 message
             });
@@ -60,24 +60,6 @@ export function createRouter(context: Context) {
                 error: e
             });
         }
-    });
-
-    router.post("/mapping", async (req, res) => {
-        const { key, value } = req.body;
-        const hash = await context.cckey.mapping.add({ key, value });
-        res.json({
-            success: true,
-            result: hash
-        });
-    });
-
-    router.get("/mapping/:key", async (req, res) => {
-        const { key } = req.params;
-        const value = await context.cckey.mapping.get({ key });
-        res.json({
-            success: true,
-            result: value
-        });
     });
 
     return router;
