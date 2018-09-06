@@ -16,6 +16,17 @@ export function createRouter(context: Context) {
         });
     });
 
+    router.get("/keys/:key/publicKey", async (req, res) => {
+        const { key } = req.params;
+        const keyType: KeyType = req.body.keyType;
+        const publicKey = await context.cckey[keyType].getPublicKey({ key });
+
+        res.json({
+            success: true,
+            result: publicKey
+        });
+    });
+
     router.post("/keys", async (req, res) => {
         const { passphrase } = req.body;
         const keyType: KeyType = req.body.keyType;
