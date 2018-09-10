@@ -27,6 +27,25 @@ export function createRouter(context: Context) {
         });
     });
 
+    router.get("/keys/:key/rawKey", async (req, res) => {
+        try {
+            const { key } = req.params;
+            const { passphrase } = req.body;
+            const keyType: KeyType = req.body.keyType;
+            const rawKey = await context.cckey[keyType].exportRawKey({ key, passphrase });
+
+            res.json({
+                success: true,
+                result: rawKey
+            });
+        } catch (e) {
+            res.json({
+                success: false,
+                error: e
+            });
+        }
+    });
+
     router.post("/keys", async (req, res) => {
         const { passphrase } = req.body;
         const keyType: KeyType = req.body.keyType;
