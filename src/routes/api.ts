@@ -32,7 +32,10 @@ export function createRouter(context: Context) {
             const { key } = req.params;
             const { passphrase } = req.body;
             const keyType: KeyType = req.body.keyType;
-            const rawKey = await context.cckey[keyType].exportRawKey({ key, passphrase });
+            const rawKey = await context.cckey[keyType].exportRawKey({
+                key,
+                passphrase
+            });
 
             res.json({
                 success: true,
