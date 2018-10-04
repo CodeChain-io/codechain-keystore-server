@@ -10,7 +10,7 @@
     "fmt": "tslint -p . --fix && prettier '**/*ts' --write"
   },
   "dependencies": {
-    "codechain-keystore": "~0.2.3",
+    "codechain-keystore": "~0.3.0",
     "config": "^2.0.1",
     "debug": "~2.6.9",
     "express": "~4.16.0",
