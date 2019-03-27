@@ -826,9 +826,10 @@ code-point-at@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/code-point-at/-/code-point-at-1.1.0.tgz#0d070b4d043a5bea33a2f1a40e2edb3d9a4ccf77"
 
-codechain-keystore@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/codechain-keystore/-/codechain-keystore-0.4.0.tgz#a8a35b1555b07c49d6456e7e2430c721e13d3a0f"
+codechain-keystore@~0.4.0:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/codechain-keystore/-/codechain-keystore-0.4.1.tgz#6f810a16f529346c85fb9a3f4014c5961f9f9c7e"
+  integrity sha512-XAiCnJd93ZqsEKo4eJF1OJHPCz5tGnZf9LYsisSfKPwfP1P/WPkyOKA3OV0/27q5jpyQ7udfBU+e9i+MOx5R+Q==
   dependencies:
     codechain-primitives "^0.3.0"
     config "^2.0.1"
@@ -2765,13 +2766,14 @@ morgan-body@^2.4.5:
     on-finished "^2.3.0"
     on-headers "^1.0.1"
 
-morgan@~1.9.0:
-  version "1.9.0"
-  resolved "https://registry.yarnpkg.com/morgan/-/morgan-1.9.0.tgz#d01fa6c65859b76fcf31b3cb53a3821a311d8051"
+morgan@~1.9.1:
+  version "1.9.1"
+  resolved "https://registry.yarnpkg.com/morgan/-/morgan-1.9.1.tgz#0a8d16734a1d9afbc824b99df87e738e58e2da59"
+  integrity sha512-HQStPIV4y3afTiCYVxirakhlCfGkI161c76kKFca7Fk1JusM//Qeo1ej2XaMniiNeaZklMVrh3vTtIzpzwbpmA==
   dependencies:
     basic-auth "~2.0.0"
     debug "2.6.9"
-    depd "~1.1.1"
+    depd "~1.1.2"
     on-finished "~2.3.0"
     on-headers "~1.0.1"
 
