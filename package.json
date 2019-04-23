@@ -1,7 +1,7 @@
 {
   "name": "codechain-keystore-server",
   "version": "0.3.0",
-  "author": "CodeChain Team <codechain@kodebox.io>",
+  "author": "CodeChain Team <hi@codechain.io>",
   "license": "Apache-2.0",
   "scripts": {
     "start": "ts-node ./bin/www.ts",
