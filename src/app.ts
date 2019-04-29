@@ -7,11 +7,10 @@ import { Model } from "objection";
 import * as path from "path";
 const morganBody = require("morgan-body");
 
-import { Context, createContext } from "./context";
 import { createRouter as createApiRouter } from "./routes/api";
 import { createRouter as createPingRouter } from "./routes/ping";
 
-export async function createApp(): Promise<[express.Application, Context]> {
+export async function createApp(): Promise<express.Application> {
     Model.knex(knex(config.get("knex")));
     const app = express();
 
@@ -24,9 +23,8 @@ export async function createApp(): Promise<[express.Application, Context]> {
     app.use(express.static(path.join(__dirname, "public")));
     morganBody(app);
 
-    const context = await createContext();
-    app.use("/api", createApiRouter(context));
-    app.use("/ping", createPingRouter(context));
+    app.use("/api", createApiRouter());
+    app.use("/ping", createPingRouter());
 
     // catch 404 and forward to error handler
     app.use((req, res, next) => {
@@ -44,5 +42,5 @@ export async function createApp(): Promise<[express.Application, Context]> {
         res.status(err.status || 500);
         res.render("error");
     });
-    return [app, context];
+    return app;
 }

@@ -1,21 +1,12 @@
 import * as express from "express";
-import { Context } from "../context";
 
-export function createRouter(context: Context) {
+export function createRouter() {
     const router = express.Router();
 
     router.get("/", async (req, res) => {
-        try {
-            await context.cckey.platform.getKeys();
-            res.json({
-                success: true
-            });
-        } catch (err) {
-            res.json({
-                success: false,
-                error: err
-            });
-        }
+        res.json({
+            success: true
+        });
     });
 
     return router;
