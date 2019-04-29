@@ -7,7 +7,6 @@ import {
     signEcdsa
 } from "codechain-primitives";
 import * as express from "express";
-import { Context } from "../context";
 import KeyModel from "../models/key";
 
 type KeyType = "asset" | "platform";
@@ -19,7 +18,7 @@ function findKey(
     return KeyModel.query().findById([type, address]) as any;
 }
 
-export function createRouter(context: Context) {
+export function createRouter() {
     const router = express.Router();
 
     router.get("/keys", async (req, res) => {

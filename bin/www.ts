@@ -4,7 +4,6 @@
 
 import * as debugModule from "debug";
 import { createApp } from "../src/app";
-import { closeContext } from "../src/context";
 const debug = debugModule("faucet:server");
 import * as http from "http";
 
@@ -12,7 +11,7 @@ main();
 
 async function main() {
     try {
-        const [app, context] = await createApp();
+        const app = await createApp();
 
         /**
          * Get port from environment and store in Express.
@@ -51,8 +50,6 @@ async function main() {
             } catch (err) {
                 console.error(`Error at closing ${err}`);
             } finally {
-                console.log("Cleanup context");
-                await closeContext(context);
                 process.exit();
             }
         });
