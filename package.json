@@ -5,6 +5,7 @@
   "license": "Apache-2.0",
   "scripts": {
     "start": "ts-node ./bin/www.ts",
+    "load": "ts-node ./bin/load.ts",
     "test": "yarn lint && jest --env node",
     "lint": "tslint -p . && prettier '**/*.ts' -l",
     "fmt": "tslint -p . --fix && prettier '**/*ts' --write",
