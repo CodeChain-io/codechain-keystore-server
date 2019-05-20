@@ -23,6 +23,13 @@ async function main() {
         const keystore = require(dbPath);
 
         for (const addr of keystore.platform) {
+            const row = await KeyModel.query().findById([
+                "platform",
+                addr.address
+            ]);
+            if (row != null) {
+                throw new Error(`Platform key ${addr.address} already exists!`);
+            }
             await KeyModel.query(tx).insert({
                 type: "platform",
                 address: addr.address,
@@ -41,6 +48,13 @@ async function main() {
         }
 
         for (const addr of keystore.asset) {
+            const row = await KeyModel.query().findById([
+                "asset",
+                addr.address
+            ]);
+            if (row != null) {
+                throw new Error(`Asset key ${addr.address} already exists!`);
+            }
             await KeyModel.query(tx).insert({
                 type: "asset",
                 address: addr.address,
