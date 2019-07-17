@@ -39,7 +39,7 @@
     "@types/node-sass-middleware": "^0.0.30",
     "@types/request-promise": "^4.1.42",
     "@types/supertest": "^2.0.5",
-    "jest": "^23.5.0",
+    "jest": "^24.8.0",
     "prettier": "1.14.2",
     "superagent": "^3.8.3",
     "supertest": "^3.1.0",
