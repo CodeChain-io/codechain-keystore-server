@@ -4,7 +4,6 @@ import * as createError from "http-errors";
 import * as knex from "knex";
 import * as logger from "morgan";
 import { Model } from "objection";
-import * as path from "path";
 const morganBody = require("morgan-body");
 
 import { createRouter as createApiRouter } from "./routes/api";
@@ -13,10 +12,6 @@ import { createRouter as createPingRouter } from "./routes/ping";
 export async function createApp(): Promise<express.Application> {
     Model.knex(knex(config.get("knex")));
     const app = express();
-
-    // view engine setup
-    app.set("views", path.join(__dirname, "views"));
-    app.set("view engine", "pug");
 
     app.use(logger("dev"));
     app.use(express.json());
