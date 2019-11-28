@@ -2,10 +2,13 @@
  * Module dependencies.
  */
 
+import * as program from "commander";
 import * as debugModule from "debug";
 import { createApp } from "../src/app";
 const debug = debugModule("faucet:server");
 import * as http from "http";
+
+program.option("--port <port>", "port number", "7007").parse(process.argv);
 
 main();
 
@@ -17,7 +20,7 @@ async function main() {
          * Get port from environment and store in Express.
          */
 
-        const port = normalizePort(process.env.PORT || "7007");
+        const port = normalizePort(program.port);
         app.set("port", port);
 
         /**
