@@ -4,9 +4,10 @@
 
 import * as program from "commander";
 import * as debugModule from "debug";
-import { createApp } from "../src/app";
-const debug = debugModule("faucet:server");
 import * as http from "http";
+import { createApp } from "../src/app";
+
+const debug = debugModule("www");
 
 program.option("--port <port>", "port number", "7007").parse(process.argv);
 
