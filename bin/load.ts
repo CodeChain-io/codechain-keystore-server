@@ -1,3 +1,4 @@
+import * as program from "commander";
 import * as config from "config";
 import * as knex from "knex";
 import { Model, transaction } from "objection";
@@ -5,21 +6,24 @@ import * as path from "path";
 
 import KeyModel from "../src/models/key";
 
-Model.knex(knex(config.get("knex")));
+let dbPath: string;
 
-const USAGE = "Usage: ts-node load.ts DB_PATH";
+program.arguments("<db_path>").action(dbPathValue => {
+    dbPath = path.join(__dirname, "..", dbPathValue);
+});
+
+program.parse(process.argv);
+
+Model.knex(knex(config.get("knex")));
 
 async function main() {
     const tx = await transaction.start(Model.knex());
     try {
-        const args = process.argv.slice(2);
-        if (args.length !== 1) {
-            console.log("Database path is not provided!");
-            console.log(USAGE);
+        if (dbPath === undefined) {
+            console.error("no db_path given!");
             process.exit(1);
         }
 
-        const dbPath = path.join(__dirname, "..", args[0]);
         const keystore = require(dbPath);
 
         for (const addr of keystore.platform) {
