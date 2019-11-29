@@ -10,55 +10,51 @@ import * as http from "http";
 
 program.option("--port <port>", "port number", "7007").parse(process.argv);
 
-main();
+main().catch(console.error);
 
 async function main() {
-    try {
-        const app = await createApp();
+    const app = await createApp();
 
-        /**
-         * Get port from environment and store in Express.
-         */
+    /**
+     * Get port from environment and store in Express.
+     */
 
-        const port = normalizePort(program.port);
-        app.set("port", port);
+    const port = normalizePort(program.port);
+    app.set("port", port);
 
-        /**
-         * Create HTTP server.
-         */
+    /**
+     * Create HTTP server.
+     */
 
-        const server = http.createServer(app);
+    const server = http.createServer(app);
 
-        /**
-         * Listen on provided port, on all network interfaces.
-         */
+    /**
+     * Listen on provided port, on all network interfaces.
+     */
 
-        server.listen(port);
-        server.on("error", onError(port));
-        server.on("listening", onListening(server));
+    server.listen(port);
+    server.on("error", onError(port));
+    server.on("listening", onListening(server));
 
-        process.on("SIGINT", async () => {
-            console.log("Closing server...");
+    process.on("SIGINT", async () => {
+        console.log("Closing server...");
 
-            try {
-                await new Promise((resolve, reject) => {
-                    server.close((err: any) => {
-                        if (err) {
-                            reject(err);
-                            return;
-                        }
-                        resolve();
-                    });
+        try {
+            await new Promise((resolve, reject) => {
+                server.close((err: any) => {
+                    if (err) {
+                        reject(err);
+                        return;
+                    }
+                    resolve();
                 });
-            } catch (err) {
-                console.error(`Error at closing ${err}`);
-            } finally {
-                process.exit();
-            }
-        });
-    } catch (err) {
-        console.error(`Error at main ${err}, ${JSON.stringify(err)}`);
-    }
+            });
+        } catch (err) {
+            console.error(`Error at closing ${err}`);
+        } finally {
+            process.exit();
+        }
+    });
 }
 
 /**
