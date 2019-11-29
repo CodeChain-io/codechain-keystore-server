@@ -1,7 +1,3 @@
-/**
- * Module dependencies.
- */
-
 import * as program from "commander";
 import * as debugModule from "debug";
 import * as http from "http";
@@ -15,23 +11,10 @@ main().catch(console.error);
 
 async function main() {
     const app = await createApp();
-
-    /**
-     * Get port from environment and store in Express.
-     */
-
     const port = normalizePort(program.port);
     app.set("port", port);
 
-    /**
-     * Create HTTP server.
-     */
-
     const server = http.createServer(app);
-
-    /**
-     * Listen on provided port, on all network interfaces.
-     */
 
     server.listen(port);
     server.on("error", onError(port));
@@ -58,29 +41,19 @@ async function main() {
     });
 }
 
-/**
- * Normalize a port into a number, string, or false.
- */
-
 function normalizePort(val: string) {
     const parsedPort = parseInt(val, 10);
 
     if (isNaN(parsedPort)) {
-        // named pipe
         return val;
     }
 
     if (parsedPort >= 0) {
-        // port number
         return parsedPort;
     }
 
     return false;
 }
-
-/**
- * Event listener for HTTP server "error" event.
- */
 
 function onError(port: any): (error: any) => void {
     return (error: any) => {
@@ -90,7 +63,6 @@ function onError(port: any): (error: any) => void {
 
         const bind = typeof port === "string" ? "Pipe " + port : "Port " + port;
 
-        // handle specific listen errors with friendly messages
         switch (error.code) {
             case "EACCES":
                 console.error(bind + " requires elevated privileges");
@@ -105,10 +77,6 @@ function onError(port: any): (error: any) => void {
         }
     };
 }
-
-/**
- * Event listener for HTTP server "listening" event.
- */
 
 function onListening(server: any): () => void {
     return () => {
